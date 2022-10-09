@@ -51,6 +51,7 @@ let copyRight = document.createElement("p");
 footer.appendChild(copyRight);
 copyRight.innerHTML =
   'The data originally comes from <a href="https://www.tvmaze.com/">TVMaze.com</a>';
-document.getElementsByClassName("container").style.flexDirection = "column"
+document.getElementsByClassName("container").style.flexDirection = "row"
+
 
 window.onload = setup;
