@@ -1,3 +1,28 @@
 #root {
-  color: red;
+  color: black;
+}
+
+body{
+background-color:rgb(230, 230, 185);
+font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+    width: 70%;
+    margin:40px auto;
+    border-style:groove;
+}
+
+.title {
+  font-size: 35px;
+
+}
+.season-episode{
+  font-style: italic;
+  font-size: 30px;
+
+}
+
+.summary {
+  color:black;
+  font-size: 25px;
 }
