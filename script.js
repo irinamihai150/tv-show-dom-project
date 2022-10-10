@@ -42,6 +42,7 @@ function makePageForEpisodes(episodeList) {
     imageEpisode.src = episode.image.medium;
     summary.innerHTML = episode.summary;
   });
+  
 }
 
 //create footer
@@ -54,5 +55,14 @@ copyRight.innerHTML =
 
 //level 200
 let searchArea = document.querySelector("#search");
-let episodes = document.getElementById("divEpisode");
+let searchValue = "";
+
+
+
+
+
+
+
+
+
 window.onload = setup;
