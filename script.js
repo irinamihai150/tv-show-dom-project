@@ -14,26 +14,24 @@ function makePageForEpisodes(episodeList) {
 
   episodeList.forEach((episode) => {
     //container for h1,h2, img, p
-    let divEpisode = document.createElement("div");
-    divEpisode.classList.add("container");
-    rootElem.appendChild(divEpisode);
+    const divEpisode = document.createElement("div");
     //title
-    let titleEpisode = document.createElement("h1");
+    const titleEpisode = document.createElement("h1");
     titleEpisode.classList.add("title");
     divEpisode.appendChild(titleEpisode);
-    let episodeName = episode.name;
+    const episodeName = episode.name;
     //h2 and ep number
-    let seasonEpisode = document.createElement("h2");
+    const seasonEpisode = document.createElement("h2");
     seasonEpisode.classList.add("season-episode");
     divEpisode.appendChild(seasonEpisode);
-    let seasonNumber = episode.season;
-    let episodeNumber = episode.number;
+    const seasonNumber = episode.season;
+    const episodeNumber = episode.number;
     //img
-    let imageEpisode = document.createElement("img");
+    const imageEpisode = document.createElement("img");
     divEpisode.appendChild(imageEpisode);
     imageEpisode.classList.add("img");
     //p for summary
-    let summary = document.createElement("p");
+    const summary = document.createElement("p");
     divEpisode.appendChild(summary);
     summary.classList.add("summary");
     //adding content
@@ -41,8 +39,18 @@ function makePageForEpisodes(episodeList) {
     seasonEpisode.innerHTML = `${episodeName}-S0${seasonNumber}E0${episodeNumber}`;
     imageEpisode.src = episode.image.medium;
     summary.innerHTML = episode.summary;
+      divEpisode.classList.add("container");
+      rootElem.appendChild(divEpisode);
   });
+  //level 200
+  //add a search input field
+  const inputField= document.getElementById("search");
+  const inputValue = document.getElementById("displaySearch");
   
+  //create a function to filter episodes
+  
+
+
 }
 
 //create footer
@@ -52,16 +60,6 @@ let copyRight = document.createElement("p");
 footer.appendChild(copyRight);
 copyRight.innerHTML =
   'The data originally comes from <a href="https://www.tvmaze.com/">TVMaze.com</a>';
-
-//level 200
-let searchArea = document.querySelector("#search");
-let searchValue = "";
-
-
-
-
-
-
 
 
 
