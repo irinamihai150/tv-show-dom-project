@@ -9,7 +9,7 @@ function setup() {
 
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
-  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   rootElem.innerHTML = "";
 
   episodeList.forEach((episode) => {
@@ -44,13 +44,48 @@ function makePageForEpisodes(episodeList) {
   });
   //level 200
   //add a search input field
-  const inputField= document.getElementById("search");
-  const inputValue = document.getElementById("displaySearch");
+  let searchField= document.getElementById("search");
+  let searchValue="";
+  // let searchValue = document.getElementsByClassName("displaySearch");
   
   //create a function to filter episodes
+  searchField.addEventListener("keydown", (ev)=>{
+    searchValue = ev.target.value.toLowerCase();
+    //The target event property returns the element that triggered the event.
+    let searchedEpisodes = allEpisodes.filter(
+      (episode) =>
+        episode.name.toLowerCase().includes(searchValue) ||
+        episode.summary.toLowerCase().includes(searchValue)
+    );
+    console.log(searchedEpisodes)
+    rootElem.innerHtml = "";
+    //recall the function to recreate the page for searchValue
+    makePageForEpisodes(searchedEpisodes);
+    let displayNumSearched = document.getElementsByClassName("displaySearch");
+    displayNumSearched.innerHtml = `Display${searchedEpisodes.length}/ ${allEpisodes.length} episodes`;
+    displayNumSearched.appendChild
+    console.log(displayNumSearched);
+  })
+  //level 300
+  //create select and option
+  let select = document.getElementById("select");
+  allEpisodes.forEach(episode=>{
+    let option = document.createElement("option");
+    select.appendChild(option)
+    //the text property sets the text of an option element
+    option.text = `SO${episode.season}E${episode.number}-${episode.name}`
+    option.value = episode.id;
+    console.log(option.value)
+  })
+  select.addEventListener("change", (ev)=>{
+    
+    let selectedEpisodes = allEpisodes.filter(episode => episode.id.toString()===ev.target.value);
+    rootElem.innerHTML = "";
+    makePageForEpisodes(selectedEpisodes);
+    let displayNumSearched = document.getElementById("displaySearch")
+    displayNumSearched.innerHTML = `Display${selectedEpisodes.season}/ ${allEpisodes.length} episodes`;
+  })
   
-
-
 }
 
 //create footer
