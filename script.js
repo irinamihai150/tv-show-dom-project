@@ -57,15 +57,17 @@ function makePageForEpisodes(episodeList) {
         episode.name.toLowerCase().includes(searchValue) ||
         episode.summary.toLowerCase().includes(searchValue)
     );
-    console.log(searchedEpisodes)
-    rootElem.innerHtml = "";
+    console.log("debugger but" + searchedEpisodes.length)
+    // rootElem.innerHtml = "";
     //recall the function to recreate the page for searchValue
+    
+    let displayNumSearched = document.getElementById("displaySearch");
+    console.log(displayNumSearched)
+    displayNumSearched.textContent = `Display${searchedEpisodes.length}/ ${allEpisodes.length} episodes`;
+    // displayNumSearched.appendChild
     makePageForEpisodes(searchedEpisodes);
-    let displayNumSearched = document.getElementsByClassName("displaySearch");
-    displayNumSearched.innerHtml = `Display${searchedEpisodes.length}/ ${allEpisodes.length} episodes`;
-    displayNumSearched.appendChild
-    console.log(displayNumSearched);
   })
+  
   //level 300
   //create select and option
   let select = document.getElementById("select");
@@ -75,15 +77,18 @@ function makePageForEpisodes(episodeList) {
     //the text property sets the text of an option element
     option.text = `SO${episode.season}E${episode.number}-${episode.name}`
     option.value = episode.id;
-    console.log(option.value)
+    // console.log(option.value)
   })
   select.addEventListener("change", (ev)=>{
+    console.log(allEpisodes);
     
     let selectedEpisodes = allEpisodes.filter(episode => episode.id.toString()===ev.target.value);
+    // console.log(ev.target.value);
+    console.log("selectedEpisodes"+selectedEpisodes);
     rootElem.innerHTML = "";
     makePageForEpisodes(selectedEpisodes);
     let displayNumSearched = document.getElementById("displaySearch")
-    displayNumSearched.innerHTML = `Display${selectedEpisodes.season}/ ${allEpisodes.length} episodes`;
+    displayNumSearched.innerHTML = `Display${selectedEpisodes.length}/ ${allEpisodes.length} episodes`;
   })
   
 }
