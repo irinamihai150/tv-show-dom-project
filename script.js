@@ -90,7 +90,10 @@ function makePageForEpisodes(episodeList) {
     let displayNumSearched = document.getElementById("displaySearch")
     displayNumSearched.innerHTML = `Display${selectedEpisodes.length}/ ${allEpisodes.length} episodes`;
   })
-  
+  document.getElementById("reset").addEventListener("click", ()=> {
+     makePageForEpisodes(allEpisodes);
+     select.value = -1;
+  })
 }
 
 //create footer
