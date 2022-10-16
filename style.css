@@ -1,3 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #root {
-  color: red;
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  margin: 1.5rem;
+  text-align: center;
+  background-color: rgb(1, 111, 200);
+}
+
+body {
+  background-color: rgb(230, 230, 185);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  height: 70vh;
+  text-align: center;
+  margin-top: 5em;
+  background-image: url(img/remote.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 3em;
+  margin-top: 3em;
+}
+
+h1 {
+  font-size: 5em;
+  color: white;
+
+}
+
+.title {
+  font-size: 35px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.contain-title {
+  padding-top: 10em;
+  color: white;
+}
+
+#search {
+  width: 30em;
+  height: 2.5em;
+  border-color: rgb(0, 0, 0);
+  border-radius: 1em;
+  border-width: 0.3em;
+}
+
+.displaySearch {
+  color: black;
+  border: red;
+}
+
+#select {
+  width: 30em;
+  height: 3em;
+  margin-right: 2em;
+  border-color: rgb(0, 0, 0);
+  border-radius: 1em;
+  border-width: 0.3em;
+}
+
+
+.container {
+  background-color: white;
+  border-color: black;
+  border-style: groove;
+  border-radius: 1em;
+  height: auto;
+  width: 30em;
+  margin-left: 4em;
+  margin-bottom: 2em;
+  margin-top: 4em;
+}
+
+.season-episode {
+  text-align: center;
+  font-style: italic;
+  font-size: 30px;
+}
+
+img {
+  padding-left: 2em;
+}
+
+.summary {
+  color: black;
+  font-size: 25px;
+  padding: 1em;
+  font-size: 16px;
+}
+
+#reset {
+  color: black;
+  margin-right: 1.5em;
+}
+
+footer {
+  text-align: center;
+  font-size: 2em;
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    flex-direction: column;
+  }
+
+  #select {
+    width: 10em;
+  }
+
+  #search {
+    width: 10em;
+    margin-top: 1em;
+  }
+
+  #root {
+    min-height: 200vh;
+  }
+
+  #container {
+    width: 15em;
+  }
+  body {
+    background-color: rgb(1, 111, 200);
+  }
+  /* .header {
+    background-position: center;
+  } */
 }
