@@ -9,7 +9,7 @@
   grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
   margin: 1.5rem;
   text-align: center;
-  background-color: rgb(1, 111, 200);
+  background-color: rgb(41, 147, 233);
 }
 
 body {
@@ -38,12 +38,13 @@ nav {
 
 h1 {
   font-size: 8em;
-  color:black;
+  color: black;
 
 }
+
 h2 {
   font-size: 5em;
-  color:black;
+  color: black;
 }
 
 .title {
@@ -78,9 +79,10 @@ h2 {
   border-radius: 1em;
   border-width: 0.3em;
 }
+
 #select-show {
-  width:30em;
-  height:3em;
+  width: 30em;
+  height: 3em;
   border-color: black;
   border-radius: 1em;
   border-width: 0.3em;
@@ -130,7 +132,7 @@ footer {
 @media only screen and (max-width: 600px) {
   nav {
     flex-direction: column;
-  
+
   }
 
   #select {
@@ -141,8 +143,9 @@ footer {
     width: 10em;
     margin-top: 1em;
   }
-  #select-show{
-    width:10em;
+
+  #select-show {
+    width: 10em;
   }
 
   #root {
@@ -152,10 +155,70 @@ footer {
   #container {
     width: 15em;
   }
+
   body {
     background-color: rgb(1, 111, 200);
   }
+
   /* .header {
     background-position: center;
   } */
+}
+
+/* ---------------shows----------------- */
+.showCard {
+  margin-bottom: 20px;
+  background-color:white;
+  width: 90em;
+  margin: 40px auto;
+  border-style: groove;
+  border-color: black;
+  padding: 30px;
+  align-items: center;
+  margin-left: 10em;
+}
+
+.showDetails {
+  display: flex;
+  margin-top: 2em;
+}
+
+.showInfo {
+  font-size: 20px;
+}
+
+.showInfoTitle:hover {
+  cursor: pointer;
+  color: rgb(16, 32, 179);
+}
+
+span {
+  color: rgb(17, 0, 255);
+}
+
+.showInfoTitle {
+  font-size: 24px;
+}
+
+.showInfo {
+  margin-left: 50px;
+}
+
+.showInfoDiv {
+  margin-top: 30px;
+}
+
+.showInfoParagraphs {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.showSummary {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+.showImage {
+  width: 150px;
+  box-shadow: 2px 2px 2px grey;
 }
