@@ -4,15 +4,15 @@ const rootElem = document.getElementById("root");
 let allEpisodes = null;
 let allShows = getAllShows();
 function setup() {
-  // fetch("https://api.tvmaze.com/shows/581/episodes")
-  //   .then((response) => {
-  //     return response.json();
-  //   })
-  //   .then((data) => {
-  //     allEpisodes = data;
-  //     makePageForEpisodes(data);
-  //   });
-  createShowList(allShows);
+  fetch("https://api.tvmaze.com/shows/581/episodes")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      allEpisodes = data;
+      makePageForEpisodes(data);
+    });
+  // createShowList(allShows);
 }
 
 //level 400
@@ -52,54 +52,54 @@ selectShow.addEventListener("change", (ev) => {
 let showsDiv = document.createElement("div");
 rootElem.appendChild(showsDiv);
 
-function createShowList(showlist) {
-  showlist.forEach((show) => {
-    let showCard = document.createElement("div");
-    showCard.classList.add("showCard");
-    showsDiv.appendChild(showCard);
-    let showDetails = document.createElement("div");
-    showDetails.classList.add("showDetails");
-    showCard.appendChild(showDetails);
-    let showImage = document.createElement("img");
-    showImage.classList.add("showImage");
-    showDetails.appendChild(showImage);
-    // showImage.src = show.image.original;
-    // if (show.image.original != null) {
-    //   showImage.src = show.image.original;
-    // }
+// function createShowList(showlist) {
+//   showlist.forEach((show) => {
+//     let showCard = document.createElement("div");
+//     showCard.classList.add("showCard");
+//     showsDiv.appendChild(showCard);
+//     let showDetails = document.createElement("div");
+//     showDetails.classList.add("showDetails");
+//     showCard.appendChild(showDetails);
+//     let showImage = document.createElement("img");
+//     showImage.classList.add("showImage");
+//     showDetails.appendChild(showImage);
+//     showImage.src = show.image.original;
+//     if (show.image.original != null) {
+//       showImage.src = show.image.original;
+//     }
 
-    let showInfo = document.createElement("div");
-    showInfo.classList.add("showInfo");
-    showDetails.appendChild(showInfo);
-    let showInfoTitle = document.createElement("h1");
-    showInfoTitle.classList.add("showInfoTitle");
-    showInfoTitle.innerHTML = `${show.name}`;
-    showInfo.appendChild(showInfoTitle);
-    let showInfoDiv = document.createElement("div");
-    showInfoDiv.classList.add("showInfoDiv");
-    showInfo.appendChild(showInfoDiv);
-    let showRuntime = document.createElement("p");
-    showRuntime.innerHTML = `<span>Runtime:</span> ${show.runtime} min`;
-    showRuntime.classList.add("showInfoParagraphs");
-    showInfoDiv.appendChild(showRuntime);
-    let showStatus = document.createElement("p");
-    showStatus.innerHTML = `<span>Status:</span> ${show.status}`;
-    showStatus.classList.add("showInfoParagraphs");
-    showInfoDiv.appendChild(showStatus);
-    let showRating = document.createElement("p");
-    showRating.innerHTML = `<span>Rating:</span> ${show.rating.average}`;
-    showRating.classList.add("showInfoParagraphs");
-    showInfoDiv.appendChild(showRating);
-    let showGenre = document.createElement("p");
-    showGenre.innerHTML = `<span>Genres:</span> ${show.genres}`;
-    showGenre.classList.add("showInfoParagraphs");
-    showInfoDiv.appendChild(showGenre);
-    let showSummary = document.createElement("p");
-    showSummary.innerHTML = show.summary;
-    showSummary.classList.add("showSummary");
-    showCard.appendChild(showSummary);
-  });
-}
+//     let showInfo = document.createElement("div");
+//     showInfo.classList.add("showInfo");
+//     showDetails.appendChild(showInfo);
+//     let showInfoTitle = document.createElement("h1");
+//     showInfoTitle.classList.add("showInfoTitle");
+//     showInfoTitle.innerHTML = `${show.name}`;
+//     showInfo.appendChild(showInfoTitle);
+//     let showInfoDiv = document.createElement("div");
+//     showInfoDiv.classList.add("showInfoDiv");
+//     showInfo.appendChild(showInfoDiv);
+//     let showRuntime = document.createElement("p");
+//     showRuntime.innerHTML = `<span>Runtime:</span> ${show.runtime} min`;
+//     showRuntime.classList.add("showInfoParagraphs");
+//     showInfoDiv.appendChild(showRuntime);
+//     let showStatus = document.createElement("p");
+//     showStatus.innerHTML = `<span>Status:</span> ${show.status}`;
+//     showStatus.classList.add("showInfoParagraphs");
+//     showInfoDiv.appendChild(showStatus);
+//     let showRating = document.createElement("p");
+//     showRating.innerHTML = `<span>Rating:</span> ${show.rating.average}`;
+//     showRating.classList.add("showInfoParagraphs");
+//     showInfoDiv.appendChild(showRating);
+//     let showGenre = document.createElement("p");
+//     showGenre.innerHTML = `<span>Genres:</span> ${show.genres}`;
+//     showGenre.classList.add("showInfoParagraphs");
+//     showInfoDiv.appendChild(showGenre);
+//     let showSummary = document.createElement("p");
+//     showSummary.innerHTML = show.summary;
+//     showSummary.classList.add("showSummary");
+//     showCard.appendChild(showSummary);
+//   });
+// }
 //fetch and present episodes from that show when show is clicked(enabling episode search and selection as before)
 // hide the "shows listing" view.
 // Add a navigation link to enable the user to return to the "shows listing"
