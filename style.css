@@ -1,15 +1,39 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-#root {
+.showSearch {
+  width: 15em;
+  margin-left: 30em;
+  width: 200px;
+  height: 30px;
+
+}
+
+/* .fa,fa-home{
+  color: rgb(15, 11, 11);
+    width: 50%;
+    height: 50%;
+    margin-top: 8%;
+    margin-left: 7.5%;
+    font-size: 5em;
+    background-size: 120%;
+} */
+
+/* #root {
   display: grid;
-  gap: 2em;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  grid-gap: 2em;
   margin: 1.5rem;
   text-align: center;
   background-color: rgb(41, 147, 233);
+}  */
+#root {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 body {
@@ -34,6 +58,13 @@ nav {
   justify-content: center;
   margin-bottom: 3em;
   margin-top: 3em;
+}
+
+#btn {
+  color: blue;
+  width: 4em;
+  height: 4em;
+
 }
 
 h1 {
@@ -91,13 +122,16 @@ h2 {
 
 
 .container {
+  display: grid;
+  grid-column: auto;
+
   background-color: white;
-  border-color: black;
+  border-color: rgb(6, 5, 99);
   border-style: groove;
   border-radius: 1em;
   height: auto;
   width: 30em;
-  margin-left: 4em;
+  margin-left: 6.5em;
   margin-bottom: 2em;
   margin-top: 4em;
 }
@@ -119,63 +153,33 @@ img {
   font-size: 16px;
 }
 
-#reset {
+/* #reset {
   color: black;
   margin-right: 1.5em;
-}
+} */
 
 footer {
   text-align: center;
   font-size: 2em;
 }
 
-@media only screen and (max-width: 600px) {
-  nav {
-    flex-direction: column;
-
-  }
-
-  #select {
-    width: 10em;
-  }
-
-  #search {
-    width: 10em;
-    margin-top: 1em;
-  }
-
-  #select-show {
-    width: 10em;
-  }
-
-  #root {
-    min-height: 200vh;
-  }
-
-  #container {
-    width: 15em;
-  }
-
-  body {
-    background-color: rgb(1, 111, 200);
-  }
-
-  /* .header {
-    background-position: center;
-  } */
-}
-
 /* ---------------shows----------------- */
 .showCard {
-  margin-bottom: 20px;
-  background-color:white;
-  width: 90em;
-  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+  background-color: white;
+  width: 80%;
+  box-shadow: 5px 10px;
   border-style: groove;
-  border-color: black;
+  border-color: rgb(15, 15, 17);
   padding: 30px;
   align-items: center;
-  margin-left: 10em;
+  margin-left: 15em;
+  margin-right: 15em;
+  margin-top: 2em;
+  background-color: rgb(155, 154, 154);
 }
 
 .showDetails {
@@ -219,6 +223,75 @@ span {
 }
 
 .showImage {
-  width: 150px;
-  box-shadow: 2px 2px 2px grey;
+  width: 250px;
+
+}
+
+/* ----------------------small screen------------------------------------- */
+
+@media only screen and (max-width: 600px) {
+  .header {
+    background-size: cover;
+  }
+
+  h1 {
+    text-align: justify;
+    font-size: 5em;
+  }
+
+  h2 {
+    text-align: justify;
+    font-size: 2.5em;
+  }
+
+  #btn {
+    margin-left: 1em;
+    color: black;
+  }
+
+  .showCard {
+    width: 50%;
+  }
+
+  .showDetails {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .showSearch {
+    width: 10em;
+    margin-bottom: 1em;
+    margin-left: 15em;
+  }
+
+  .showInfo {
+    margin-left: 2em;
+  }
+
+  .showImage {
+
+    width: 20em;
+    height: 15em;
+  }
+
+  .showSummary {
+    padding-left: 1em;
+    width: 20em;
+
+  }
+
+  .showDiv {
+    background-color: white;
+  }
+
+  #container {
+    width: 15em;
+  }
+
+  body {
+    background-color: rgb(1, 111, 200);
+  }
+
 }
