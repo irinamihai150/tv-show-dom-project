@@ -37,11 +37,18 @@ selectShow.addEventListener("change", (ev) => {
   let showId = selectedShow[0].id;
   fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
     .then((response) => {
-      return response.json();
+      if (response.status == 200) {
+        return response.json();
+      }
+      throw `${response.status} ${response.statusText}`;
     })
     .then((data) => {
       console.log(data);
       makePageForEpisodes(data);
+    })
+    //handle errors from fetch
+    .catch((error) => {
+      console.log(error);
     });
 });
 
@@ -50,12 +57,13 @@ selectShow.addEventListener("change", (ev) => {
 //create a show listing and display name, image, summary, genres, status, rating, and runtime.
 
 function createShowList(showlist) {
-  hideStuff();
+  // hideStuff();
 
-  let showSearch = document.createElement("input");
-  showSearch.setAttribute("placeholder", "Search show");
-  showSearch.classList.add("showSearch");
-  rootElem.append(showSearch);
+  // let showSearch = document.createElement("input");
+  // showSearch.classList.add(searchShow)
+  // showSearch.setAttribute("placeholder", "Search show");
+  // showSearch.classList.add("showSearch");
+  // rootElem.append(showSearch);
   let showsDiv = document.createElement("div");
   showsDiv.classList.add("showsDiv");
 
@@ -97,14 +105,12 @@ function createShowList(showlist) {
     showInfoTitle.innerHTML = `${show.name}`;
     showInfo.appendChild(showInfoTitle);
     showInfo.appendChild(showInfoDiv);
+
     showRuntime.innerHTML = `<span>Runtime:</span> ${show.runtime} min`;
-    showInfoDiv.appendChild(showRuntime);
     showStatus.innerHTML = `<span>Status:</span> ${show.status}`;
-    showInfoDiv.appendChild(showStatus);
     showRating.innerHTML = `<span>Rating:</span> ${show.rating.average}`;
-    showInfoDiv.appendChild(showRating);
     showGenre.innerHTML = `<span>Genres:</span> ${show.genres}`;
-    showInfoDiv.appendChild(showGenre);
+    showInfoDiv.append(showRuntime, showStatus, showRating, showGenre);
     showSummary.innerHTML = show.summary;
     showCard.appendChild(showSummary);
 
@@ -120,6 +126,7 @@ function createShowList(showlist) {
         });
     });
   });
+  
 }
 
 // hide the "shows listing buttons" view.
@@ -139,19 +146,21 @@ function showStuff(selectshow, select, search) {
 }
 
 // Add a navigation link to enable the user to return to the "shows listing"
+//When this is clicked, the episodes listing should be hidden
 let btn = document.getElementById("btn");
 btn.addEventListener("click", () => {
   let rootElem = document.getElementById("root");
   rootElem.textContent = "";
   setup();
-
   hideStuff();
 });
 
-//When this is clicked, the episodes listing should be hidden
-
 //Provide a free-text show search through show names, genres, and summary texts
 
+// let searchShow = ""
+// searchShow.addEventListener("click",()=>{
+
+// })
 // ----------------------level 100------------------------------
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
@@ -202,6 +211,8 @@ function makePageForEpisodes(episodeList) {
         episode.name.toLowerCase().includes(searchValue) ||
         episode.summary.toLowerCase().includes(searchValue)
     );
+
+
     console.log("debugger but" + searchedEpisodes.length);
     // rootElem.innerHtml = "";
     //recall the function to recreate the page for searchValue
