@@ -125,6 +125,15 @@ h2 {
   border-width: 0.3em;
   margin-right: 2em;
 }
+#searchShow{
+  width: 30em;
+  height:3em;
+  border-radius:1em;
+  border-width: 0.3em;
+}
+#btn {
+  margin-right: 1em;
+}
 
 
 .container {
@@ -177,6 +186,7 @@ footer {
   margin-bottom: 30px;
   background-color: white;
   width: 80%;
+  height: auto;
   box-shadow: 5px 10px;
   border-style: groove;
   border-color: rgb(15, 15, 17);
@@ -227,6 +237,27 @@ span {
   margin-top: 30px;
   font-size: 18px;
 }
+/* short */
+/* .showSummary {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 4;
+} */
+/* .showSummary{
+  overflow:hidden;
+  height:45px;
+} */
+
+
+.btnMore {
+color:blue
+
+}
+.btnLess {
+color:blue
+}
 
 .showImage {
   width: 250px;
@@ -239,7 +270,14 @@ span {
   .header {
     background-size: cover;
   }
-
+  nav {
+    display: flex;
+    flex-direction: column;
+   
+  }
+#select-show {
+  margin-bottom: 1em;
+}
   h1 {
     text-align: justify;
     font-size: 5em;
@@ -253,6 +291,7 @@ span {
   #btn {
     margin-left: 1em;
     color: black;
+    margin-right: 1em;
   }
 
   .showCard {

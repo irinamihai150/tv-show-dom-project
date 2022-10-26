@@ -42,6 +42,7 @@ selectShow.addEventListener("change", (ev) => {
       }
       throw `${response.status} ${response.statusText}`;
     })
+
     .then((data) => {
       console.log(data);
       makePageForEpisodes(data);
@@ -57,7 +58,7 @@ selectShow.addEventListener("change", (ev) => {
 //create a show listing and display name, image, summary, genres, status, rating, and runtime.
 
 function createShowList(showlist) {
-  // hideStuff();
+  hideNav();
 
   // let showSearch = document.createElement("input");
   // showSearch.classList.add(searchShow)
@@ -86,7 +87,12 @@ function createShowList(showlist) {
     let showRating = document.createElement("p");
     let showGenre = document.createElement("p");
     let showSummary = document.createElement("p");
+    // let castingInfo = document.createElement("p")
+    // showInfoDiv.appendChild(castingInfo)
 
+    // castingInfo.innerHTML = `<span>Cast:</span>${show._embedded.cast[0]}`;
+
+    console.log(Object.values(show.name));
     showCard.classList.add("showCard");
     showDetails.classList.add("showDetails");
     showImage.classList.add("showImage");
@@ -114,8 +120,21 @@ function createShowList(showlist) {
     showSummary.innerHTML = show.summary;
     showCard.appendChild(showSummary);
 
+    // let btnReadMore = document.createElement("button");
+    // btnReadMore.classList.add ("btnMore")
+    // btnReadMore.innerHTML = "Read More";
+    // showSummary.append(btnReadMore);
+
+    // let summary = document.getElementsByClassName("showSummary p")
+    // if (summary.textContent.length > 100) {
+    //   let truncated = summary.textContent.substring(0, 100);
+
+    //   summary.innerHTML = `<p style="margin:0;">${truncated}<span class='ellipsis'>... Read more</span></p>`;
+    // }
+    // summary.innerHtml = document.createElement("button")
+
     //fetch and present episodes from that show when show is clicked(enabling episode search and selection as before)
-    showCard.addEventListener("click", (ev) => {
+    showInfoTitle.addEventListener("click", (ev) => {
       fetch(`https://api.tvmaze.com/shows/${show.id}/episodes`)
         .then((response) => {
           return response.json();
@@ -125,20 +144,39 @@ function createShowList(showlist) {
           makePageForEpisodes(data);
         });
     });
+
+    // makePageForShow();
   });
-  
+
+  //Provide a free-text show search through show names, genres, and summary texts
+  function makePageForShow(event) {
+    let search = document.getElementById("searchShow").value;
+    let filteredShows = allShows.filter((show) => {
+      searchShow(show, search);
+    });
+    createShowList(filteredShows);
+  }
 }
+
+// function searchShow(show, search) {
+//   return (
+//     !search ||
+//     contains(show.name, search) ||
+//     show.genres.some((genre) => contains(genre, search)) ||
+//     contains(show.summary, search)
+//   );
+// }
 
 // hide the "shows listing buttons" view.
 
-function hideStuff(selectshow, select, search) {
-  document.getElementById("select-show").style.display = "none";
+function hideNav(selectshow, select, search) {
+  // document.getElementById("select-show").style.display = "none";
   document.getElementById("select").style.display = "none";
   document.getElementById("search").style.display = "none";
   // document.getElementById("container").style.display = "none";
 }
 
-function showStuff(selectshow, select, search) {
+function showNav(selectshow, select, search) {
   document.getElementById("select-show").style.display = "block";
   document.getElementById("select").style.display = "block";
   document.getElementById("search").style.display = "block";
@@ -155,10 +193,7 @@ btn.addEventListener("click", () => {
   hideStuff();
 });
 
-//Provide a free-text show search through show names, genres, and summary texts
 
-// let searchShow = ""
-// searchShow.addEventListener("click",()=>{
 
 // })
 // ----------------------level 100------------------------------
@@ -211,7 +246,6 @@ function makePageForEpisodes(episodeList) {
         episode.name.toLowerCase().includes(searchValue) ||
         episode.summary.toLowerCase().includes(searchValue)
     );
-
 
     console.log("debugger but" + searchedEpisodes.length);
     // rootElem.innerHtml = "";
