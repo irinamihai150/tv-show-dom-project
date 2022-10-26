@@ -267,9 +267,9 @@ color:blue
 /* ----------------------small screen------------------------------------- */
 
 @media only screen and (max-width: 600px) {
-  .header {
+  /* .header {
     background-size: cover;
-  }
+  } */
   nav {
     display: flex;
     flex-direction: column;
@@ -277,6 +277,10 @@ color:blue
   }
 #select-show {
   margin-bottom: 1em;
+  width:15em;
+}
+#searchShow {
+  width:15em;
 }
   h1 {
     text-align: justify;
@@ -296,6 +300,7 @@ color:blue
 
   .showCard {
     width: 50%;
+    margin-left: 0;
   }
 
   .showDetails {
