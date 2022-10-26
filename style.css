@@ -300,7 +300,7 @@ color:blue
 
   .showCard {
     width: 50%;
-    margin-left: 0;
+    margin-left: 1em;
   }
 
   .showDetails {
