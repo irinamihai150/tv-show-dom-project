@@ -264,10 +264,17 @@ span {
   color: blue
 }
 
-.showImage {
+.showImage{
   width: 250px;
 
 }
+.containSummary{
+  display:flex;
+  flex-direction: ;
+}
+/* .readMore{
+display: inline-block;
+} */
 
 /* ----------------------small screen------------------------------------- */
 

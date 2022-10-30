@@ -72,7 +72,13 @@ function createShowList(showlist) {
   hideNav();
 
   let showsDiv = document.getElementById("showsDiv");
-  showsDiv.textContent = "";
+  if (showsDiv) {
+    showsDiv.textContent = "";
+  } else { 
+    showsDiv = document.createElement("div")
+    showsDiv.setAttribute("id", showsDiv)
+    rootElem.append(showsDiv)
+  }
 
   showlist.forEach((show) => {
     document.getElementById("select").style.display = "none";
@@ -90,7 +96,9 @@ function createShowList(showlist) {
     let showStatus = document.createElement("p");
     let showRating = document.createElement("p");
     let showGenre = document.createElement("p");
+    let containSumary = document.createElement("div");
     let showSummary = document.createElement("p");
+    containSumary.append(showSummary);
 
     // let castingInfo = document.createElement("p")
 
@@ -110,6 +118,7 @@ function createShowList(showlist) {
     showRating.classList.add("showInfoParagraphs");
     showGenre.classList.add("showInfoParagraphs");
     showSummary.classList.add("showSummary");
+    containSumary.classList.add("containSumary");
 
     showsDiv.appendChild(showCard);
     showCard.appendChild(showDetails);
@@ -124,12 +133,7 @@ function createShowList(showlist) {
     showGenre.innerHTML = `<span>Genres:</span> ${show.genres}`;
     showInfoDiv.append(showRuntime, showStatus, showRating, showGenre);
     showSummary.innerHTML = show.summary;
-    showCard.appendChild(showSummary);
-
-    // let btnReadMore = document.createElement("button");
-    // btnReadMore.classList.add ("btnMore")
-    // btnReadMore.innerHTML = "Read More";
-    // showSummary.append(btnReadMore);
+    showCard.append(containSumary);
 
     //fetch and present episodes from that show when show is clicked(enabling episode search and selection as before)
     showInfoTitle.addEventListener("click", (ev) => {
@@ -146,12 +150,18 @@ function createShowList(showlist) {
 
   let summaryArray = document.getElementsByClassName("showSummary");
   for (let i = 0; i < summaryArray.length; i++) {
-    if (summaryArray.item(i).textContent.length > 100) {
-      let truncated = summaryArray.item(i).textContent.substring(0, 100);
+    if (summaryArray.item(i).textContent.length > 200) {
+      let truncated = summaryArray.item(i).textContent.substring(0, 200);
 
-      summaryArray.item(i).innerHTML = `<p style="margin:0;">${truncated}<span class='ellipsis'>... Read more</span></p>`;
+      summaryArray.item(i).innerHTML = `<p style="margin:0;">${truncated}</p>`;
+      const readMore = document.createElement("span");
+      readMore.classList.add("readMore");
+      summaryArray.item(i).append(readMore);
+      readMore.innerText = " ...Read More ";
+      readMore.addEventListener("click", (event) => {
+        summaryArray.item(i).innerHTML = allShows[i].summary;
+      });
     }
-
   }
 }
 
@@ -200,7 +210,7 @@ btn.addEventListener("click", () => {
   let rootElem = document.getElementById("root");
   rootElem.textContent = "";
   setup();
-  hideStuff();
+  hideNav();
 });
 
 // })
