@@ -2,7 +2,7 @@
 const rootElem = document.getElementById("root");
 //level 350
 let allEpisodes = null;
-let allShows = null;
+let allShows = getAllShows();
 function setup() {
   // fetch("https://api.tvmaze.com/shows/581/episodes")
   //   .then((response) => {
@@ -13,16 +13,18 @@ function setup() {
   //     makePageForEpisodes(data);
   //   });
 
-  fetch(`http://api.tvmaze.com/shows`)
-    .then((response) => {
-      if (response.status == 200) {
-        return response.json();
-      }
-      throw `${response.status} ${response.statusText}`;
-    })
-    .then((data) => {
-      createShowList(data);
-      allShows = data;
+  // fetch(`http://api.tvmaze.com/shows`)
+  //   .then((response) => {
+  //     if (response.status == 200) {
+  //       return response.json();
+  //     }
+  //     throw `${response.status} ${response.statusText}`;
+  //   })
+
+    createShowList(allShows);
+    // .then((data) => {
+      
+    
       allShows.forEach((show) => {
         let option = document.createElement("option");
         selectShow.appendChild(option);
@@ -30,7 +32,7 @@ function setup() {
         let sortedShows = allShows.sort((a, b) => a.name.localeCompare(b.name));
       });
       makePageForShow();
-    });
+    // });
 }
 
 //level 400
