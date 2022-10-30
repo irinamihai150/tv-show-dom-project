@@ -22,17 +22,14 @@ function setup() {
   //   })
 
     createShowList(allShows);
-    // .then((data) => {
-      
-    
-      allShows.forEach((show) => {
+    allShows.forEach((show) => {
         let option = document.createElement("option");
         selectShow.appendChild(option);
         option.text = show.name;
         let sortedShows = allShows.sort((a, b) => a.name.localeCompare(b.name));
       });
       makePageForShow();
-    // });
+
 }
 
 //level 400
