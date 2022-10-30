@@ -111,12 +111,14 @@ h2 {
   border-radius: 1em;
   border-width: 0.3em;
 }
-#search-input{
-  width:30em;
-  height:3em;
+
+#search-input {
+  width: 30em;
+  height: 3em;
   border-radius: 1em;
-  border-width:0.3em;
+  border-width: 0.3em;
 }
+
 #select-show {
   width: 30em;
   height: 3em;
@@ -125,12 +127,14 @@ h2 {
   border-width: 0.3em;
   margin-right: 2em;
 }
-#searchShow{
+
+#searchShow {
   width: 30em;
-  height:3em;
-  border-radius:1em;
+  height: 3em;
+  border-radius: 1em;
   border-width: 0.3em;
 }
+
 #btn {
   margin-right: 1em;
 }
@@ -237,6 +241,7 @@ span {
   margin-top: 30px;
   font-size: 18px;
 }
+
 /* short */
 /* .showSummary {
   overflow: hidden;
@@ -252,11 +257,11 @@ span {
 
 
 .btnMore {
-color:blue
-
+  color: blue
 }
+
 .btnLess {
-color:blue
+  color: blue
 }
 
 .showImage {
@@ -267,21 +272,25 @@ color:blue
 /* ----------------------small screen------------------------------------- */
 
 @media only screen and (max-width: 600px) {
+
   /* .header {
     background-size: cover;
   } */
   nav {
     display: flex;
     flex-direction: column;
-   
+
   }
-#select-show {
-  margin-bottom: 1em;
-  width:15em;
-}
-#searchShow {
-  width:15em;
-}
+
+  #select-show {
+    margin-bottom: 1em;
+    width: 15em;
+  }
+
+  #searchShow {
+    width: 15em;
+  }
+
   h1 {
     text-align: justify;
     font-size: 5em;
@@ -299,7 +308,7 @@ color:blue
   }
 
   .showCard {
-    width: 50%;
+    width: 60%;
     margin-left: 1em;
   }
 

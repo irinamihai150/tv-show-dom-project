@@ -2,7 +2,7 @@
 const rootElem = document.getElementById("root");
 //level 350
 let allEpisodes = null;
-let allShows = getAllShows();
+let allShows = null;
 function setup() {
   // fetch("https://api.tvmaze.com/shows/581/episodes")
   //   .then((response) => {
@@ -12,18 +12,29 @@ function setup() {
   //     allEpisodes = data;
   //     makePageForEpisodes(data);
   //   });
-  createShowList(allShows);
+
+  fetch(`http://api.tvmaze.com/shows`)
+    .then((response) => {
+      if (response.status == 200) {
+        return response.json();
+      }
+      throw `${response.status} ${response.statusText}`;
+    })
+    .then((data) => {
+      createShowList(data);
+      allShows = data;
+      allShows.forEach((show) => {
+        let option = document.createElement("option");
+        selectShow.appendChild(option);
+        option.text = show.name;
+        let sortedShows = allShows.sort((a, b) => a.name.localeCompare(b.name));
+      });
+      makePageForShow();
+    });
 }
 
 //level 400
 let selectShow = document.getElementById("select-show");
-
-allShows.forEach((show) => {
-  let option = document.createElement("option");
-  selectShow.appendChild(option);
-  option.text = show.name;
-  let sortedShows = allShows.sort((a, b) => a.name.localeCompare(b.name));
-});
 
 selectShow.addEventListener("change", (ev) => {
   let selectedShow = allShows.filter((show) => {
@@ -44,7 +55,7 @@ selectShow.addEventListener("change", (ev) => {
     })
 
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       makePageForEpisodes(data);
     })
     //handle errors from fetch
@@ -60,22 +71,15 @@ selectShow.addEventListener("change", (ev) => {
 function createShowList(showlist) {
   hideNav();
 
-  // let showSearch = document.createElement("input");
-  // showSearch.classList.add(searchShow)
-  // showSearch.setAttribute("placeholder", "Search show");
-  // showSearch.classList.add("showSearch");
-  // rootElem.append(showSearch);
-  let showsDiv = document.createElement("div");
-  showsDiv.classList.add("showsDiv");
-
-  rootElem.appendChild(showsDiv);
+  let showsDiv = document.getElementById("showsDiv");
+  showsDiv.textContent = "";
 
   showlist.forEach((show) => {
     document.getElementById("select").style.display = "none";
     let showCard = document.createElement("div");
     let showDetails = document.createElement("div");
     let showImage = document.createElement("img");
-    console.log(show.image);
+    // console.log(show.image);
     if (show.image && show.image.medium) {
       showImage.src = show.image.medium;
     }
@@ -87,10 +91,12 @@ function createShowList(showlist) {
     let showRating = document.createElement("p");
     let showGenre = document.createElement("p");
     let showSummary = document.createElement("p");
+
     // let castingInfo = document.createElement("p")
+
     // showInfoDiv.appendChild(castingInfo)
 
-    // castingInfo.innerHTML = `<span>Cast:</span>${show._embedded.cast[0]}`;
+    // castingInfo.innerHTML = `<span>Cast:</span>${show._embedded.cast}`;
 
     console.log(Object.values(show.name));
     showCard.classList.add("showCard");
@@ -125,14 +131,6 @@ function createShowList(showlist) {
     // btnReadMore.innerHTML = "Read More";
     // showSummary.append(btnReadMore);
 
-    // let summary = document.getElementsByClassName("showSummary p")
-    // if (summary.textContent.length > 100) {
-    //   let truncated = summary.textContent.substring(0, 100);
-
-    //   summary.innerHTML = `<p style="margin:0;">${truncated}<span class='ellipsis'>... Read more</span></p>`;
-    // }
-    // summary.innerHtml = document.createElement("button")
-
     //fetch and present episodes from that show when show is clicked(enabling episode search and selection as before)
     showInfoTitle.addEventListener("click", (ev) => {
       fetch(`https://api.tvmaze.com/shows/${show.id}/episodes`)
@@ -144,28 +142,40 @@ function createShowList(showlist) {
           makePageForEpisodes(data);
         });
     });
-
-    // makePageForShow();
   });
 
-  //Provide a free-text show search through show names, genres, and summary texts
-  function makePageForShow(event) {
-    let search = document.getElementById("searchShow").value;
-    let filteredShows = allShows.filter((show) => {
-      searchShow(show, search);
-    });
-    createShowList(filteredShows);
+  let summaryArray = document.getElementsByClassName("showSummary");
+  for (let i = 0; i < summaryArray.length; i++) {
+    if (summaryArray.item(i).textContent.length > 100) {
+      let truncated = summaryArray.item(i).textContent.substring(0, 100);
+
+      summaryArray.item(i).innerHTML = `<p style="margin:0;">${truncated}<span class='ellipsis'>... Read more</span></p>`;
+    }
+
   }
 }
 
-// function searchShow(show, search) {
-//   return (
-//     !search ||
-//     contains(show.name, search) ||
-//     show.genres.some((genre) => contains(genre, search)) ||
-//     contains(show.summary, search)
-//   );
-// }
+//Provide a free-text show search through show names, genres, and summary text
+
+function makePageForShow(event) {
+  let search = document.getElementById("searchShow").value;
+  let filteredShows = allShows.filter((show) => {
+    if (
+      show.name.includes(search) ||
+      show.genres.includes(search) ||
+      show.summary.includes(search)
+    ) {
+      return show;
+    }
+  });
+  console.log(filteredShows);
+  createShowList(filteredShows);
+}
+
+let searchShow2 = document.getElementById("searchShow");
+searchShow2.addEventListener("click", () => {
+  makePageForShow();
+});
 
 // hide the "shows listing buttons" view.
 
@@ -193,11 +203,10 @@ btn.addEventListener("click", () => {
   hideStuff();
 });
 
-
-
 // })
 // ----------------------level 100------------------------------
 function makePageForEpisodes(episodeList) {
+  showNav();
   const rootElem = document.getElementById("root");
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
