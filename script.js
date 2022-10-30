@@ -53,7 +53,6 @@ selectShow.addEventListener("change", (ev) => {
       }
       throw `${response.status} ${response.statusText}`;
     })
-
     .then((data) => {
       // console.log(data);
       makePageForEpisodes(data);
@@ -74,10 +73,10 @@ function createShowList(showlist) {
   let showsDiv = document.getElementById("showsDiv");
   if (showsDiv) {
     showsDiv.textContent = "";
-  } else { 
-    showsDiv = document.createElement("div")
-    showsDiv.setAttribute("id", showsDiv)
-    rootElem.append(showsDiv)
+  } else {
+    showsDiv = document.createElement("div");
+    showsDiv.setAttribute("id", showsDiv);
+    rootElem.append(showsDiv);
   }
 
   showlist.forEach((show) => {
@@ -99,12 +98,6 @@ function createShowList(showlist) {
     let containSumary = document.createElement("div");
     let showSummary = document.createElement("p");
     containSumary.append(showSummary);
-
-    // let castingInfo = document.createElement("p")
-
-    // showInfoDiv.appendChild(castingInfo)
-
-    // castingInfo.innerHTML = `<span>Cast:</span>${show._embedded.cast}`;
 
     console.log(Object.values(show.name));
     showCard.classList.add("showCard");
@@ -166,7 +159,7 @@ function createShowList(showlist) {
 }
 
 //Provide a free-text show search through show names, genres, and summary text
-
+//level 500
 function makePageForShow(event) {
   let search = document.getElementById("searchShow").value;
   let filteredShows = allShows.filter((show) => {
@@ -190,17 +183,14 @@ searchShow2.addEventListener("click", () => {
 // hide the "shows listing buttons" view.
 
 function hideNav(selectshow, select, search) {
-  // document.getElementById("select-show").style.display = "none";
   document.getElementById("select").style.display = "none";
   document.getElementById("search").style.display = "none";
-  // document.getElementById("container").style.display = "none";
 }
 
 function showNav(selectshow, select, search) {
   document.getElementById("select-show").style.display = "block";
   document.getElementById("select").style.display = "block";
   document.getElementById("search").style.display = "block";
-  // document.getElementById("container").style.display = "block";
 }
 
 // Add a navigation link to enable the user to return to the "shows listing"
@@ -219,7 +209,6 @@ function makePageForEpisodes(episodeList) {
   showNav();
   const rootElem = document.getElementById("root");
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-
   rootElem.innerHTML = "";
   const select = document.getElementById("select");
   const selectbar = document.getElementById("selectbar");
@@ -240,7 +229,6 @@ function makePageForEpisodes(episodeList) {
     summary.classList.add("summary");
     divEpisode.classList.add("container");
     divEpisode.appendChild(titleEpisode);
-
     divEpisode.appendChild(seasonEpisode);
     divEpisode.appendChild(imageEpisode);
     divEpisode.appendChild(summary);
@@ -259,7 +247,6 @@ function makePageForEpisodes(episodeList) {
   //create a function to filter episodes
   searchField.addEventListener("keydown", (ev) => {
     searchValue = ev.target.value.toLowerCase();
-    //The target event property returns the element that triggered the event.
     let searchedEpisodes = allEpisodes.filter(
       (episode) =>
         episode.name.toLowerCase().includes(searchValue) ||
@@ -273,7 +260,6 @@ function makePageForEpisodes(episodeList) {
     let displayNumSearched = document.getElementById("displaySearch");
     console.log(displayNumSearched);
     displayNumSearched.textContent = `Display${searchedEpisodes.length}/ ${allEpisodes.length} episodes`;
-    // displayNumSearched.appendChild
     makePageForEpisodes(searchedEpisodes);
   });
 
@@ -298,10 +284,6 @@ function makePageForEpisodes(episodeList) {
     let displayNumSearched = document.getElementById("displaySearch");
     displayNumSearched.innerHTML = `Display${selectedEpisodes.length}/ ${episodeList.length} episodes`;
   });
-  // document.getElementById("reset").addEventListener("click", () => {
-  //   makePageForEpisodes(allEpisodes);
-  //   select.value = 1;
-  // });
 }
 
 //create footer

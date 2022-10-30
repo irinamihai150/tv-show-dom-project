@@ -12,24 +12,6 @@
 
 }
 
-/* .fa,fa-home{
-  color: rgb(15, 11, 11);
-    width: 50%;
-    height: 50%;
-    margin-top: 8%;
-    margin-left: 7.5%;
-    font-size: 5em;
-    background-size: 120%;
-} */
-
-/* #root {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-  grid-gap: 2em;
-  margin: 1.5rem;
-  text-align: center;
-  background-color: rgb(41, 147, 233);
-}  */
 #root {
   display: flex;
   flex-direction: row;
@@ -104,7 +86,7 @@ h2 {
 }
 
 #select {
-  width: 30em;
+  width: 250px;
   height: 3em;
   margin-right: 2em;
   border-color: rgb(0, 0, 0);
@@ -113,23 +95,30 @@ h2 {
 }
 
 #search-input {
-  width: 30em;
+  width: 30px;
   height: 3em;
   border-radius: 1em;
   border-width: 0.3em;
+
+}
+
+#search {
+  width: 250px;
+  margin-bottom: 1em;
 }
 
 #select-show {
-  width: 30em;
+  width: 250px;
   height: 3em;
   border-color: black;
   border-radius: 1em;
   border-width: 0.3em;
   margin-right: 2em;
+  margin-bottom: 1em;
 }
 
 #searchShow {
-  width: 30em;
+  width: 250px;
   height: 3em;
   border-radius: 1em;
   border-width: 0.3em;
@@ -144,7 +133,7 @@ h2 {
   display: grid;
   grid-column: auto;
 
-  background-color: white;
+  background-color: rgb(167, 161, 161);
   border-color: rgb(6, 5, 99);
   border-style: groove;
   border-radius: 1em;
@@ -163,6 +152,8 @@ h2 {
 
 img {
   padding-left: 2em;
+  margin-top: 1em;
+  justify-self: center;
 }
 
 .summary {
@@ -199,7 +190,7 @@ footer {
   margin-left: 15em;
   margin-right: 15em;
   margin-top: 2em;
-  background-color: rgb(155, 154, 154);
+  background-color: rgb(173, 173, 173);
 }
 
 .showDetails {
@@ -242,20 +233,6 @@ span {
   font-size: 18px;
 }
 
-/* short */
-/* .showSummary {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-
-  -webkit-line-clamp: 4;
-} */
-/* .showSummary{
-  overflow:hidden;
-  height:45px;
-} */
-
-
 .btnMore {
   color: blue
 }
@@ -264,25 +241,20 @@ span {
   color: blue
 }
 
-.showImage{
+.showImage {
   width: 250px;
 
 }
-.containSummary{
-  display:flex;
+
+.containSummary {
+  display: flex;
   flex-direction: ;
 }
-/* .readMore{
-display: inline-block;
-} */
 
 /* ----------------------small screen------------------------------------- */
 
 @media only screen and (max-width: 600px) {
 
-  /* .header {
-    background-size: cover;
-  } */
   nav {
     display: flex;
     flex-direction: column;
